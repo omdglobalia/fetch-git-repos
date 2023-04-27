@@ -10,7 +10,7 @@ const ListView = () => {
     const param = useParams();
 
     const dispatch = useDispatch();
-    const { data, error, isLoading } = useGetUserRepoQuery(param.user);
+    const { data, error, isLoading } = useGetUserRepoQuery(param.user, { skip: param.user ? false : true });
 
     useEffect(() => {
         dispatch(setRepos(data))

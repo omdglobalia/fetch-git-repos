@@ -5,36 +5,36 @@ import { configureStore } from '@reduxjs/toolkit';
 import ListView from './components/listView';
 
 describe('ListView component', () => {
-  
-  test('renders search input', () => {
+
+  test('renders search input', async () => {
     render(
       <Provider store={store}>
         <ListView />
       </Provider>
     );
-    const searchInput = screen.getByPlaceholderText(/Search repo's....*/i);
+    const searchInput = await screen.findByPlaceholderText(/Search repo's....*/i);
     expect(searchInput).toBeInTheDocument();
   });
 
-  test('filters search results', () => {
+  test('filters search results', async () => {
     render(
       <Provider store={store}>
         <ListView />
       </Provider>
     );
-    const searchInput = screen.getByPlaceholderText(/Search repo's....*/i);
+    const searchInput = await screen.findByPlaceholderText(/Search repo's....*/i);
 
     // Type a search query
     fireEvent.change(searchInput, { target: { value: 'react' } });
   });
 
-  test('displays message when no search results are found', () => {
+  test('displays message when no search results are found', async () => {
     render(
       <Provider store={store}>
         <ListView />
       </Provider>
     );
-    const searchInput = screen.getByPlaceholderText(/Search repo's....*/i);
+    const searchInput = await screen.findByPlaceholderText(/Search repo's....*/i);
 
     // Type a search query
     fireEvent.change(searchInput, { target: { value: 'test' } });
